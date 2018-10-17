@@ -106,7 +106,7 @@ def plot(file, color_file, violin=True, box=False, swarm=False, x='Category', y=
     return out
 
 def pdf(request):
-    id_map = libhttp.parse_params(request, {'violin':'t', 'box':'t', 'swarm':'t', 'x':'Category', 'y':'Value'})
+    id_map = libhttp.parse_params(request, {'violin':'t', 'box':'f', 'swarm':'f', 'x':'Category', 'y':'Value'})
     
     violin = id_map['violin'][0] == 't'
     box = id_map['box'][0] == 't'
