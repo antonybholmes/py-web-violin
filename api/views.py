@@ -37,7 +37,6 @@ def format_axes(ax, x='Category', y='Value'):
 
 def plot(file, color_file, violin=True, box=False, swarm=False, x='Category', y='Value'):
     f, out = tempfile.mkstemp(suffix='.pdf', dir=settings.TMP_DIR)
-    print(out)
     os.close(f)
     
     libplot.setup()
