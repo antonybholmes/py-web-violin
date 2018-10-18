@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('agg')
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -9,8 +11,6 @@ import pandas as pd
 import numpy as np
 import libhttp
 import sys
-import matplotlib
-matplotlib.use('agg')
 
 from violin import settings
 
