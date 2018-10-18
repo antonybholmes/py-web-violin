@@ -12,8 +12,6 @@ import sys
 
 from violin import settings
 
-
-
 def tmp_name():
     return next(tempfile._get_candidate_names())
 
@@ -52,7 +50,7 @@ def plot(file, color_file, violin=True, box=False, swarm=False, x='Category', y=
 
     w = np.unique(df['Label']).size  * settings.COLUMN_WIDTH
 
-    fig = libplot.new_base_fig(w=w, h=6)
+    fig = libplot.new_base_fig(w=w, h=settings.PLOT_HEIGHT)
 
     if violin:
         ax = libplot.new_ax(fig)
@@ -106,6 +104,9 @@ def plot(file, color_file, violin=True, box=False, swarm=False, x='Category', y=
     return out
 
 def pdf(request):
+    #print(request)
+    #print(request.body)
+    
     id_map = libhttp.parse_params(request, {'violin':'t', 'box':'f', 'swarm':'f', 'x':'Category', 'y':'Value'})
     
     violin = id_map['violin'][0] == 't'
@@ -116,7 +117,9 @@ def pdf(request):
     
     if request.method != 'POST':
         return JsonResponse(['No POST'], safe=False)
-        
+    
+    print('data_file' in request.FILES)
+    
     if 'data_file' not in request.FILES:
         return JsonResponse(['No file'], safe=False)
         
